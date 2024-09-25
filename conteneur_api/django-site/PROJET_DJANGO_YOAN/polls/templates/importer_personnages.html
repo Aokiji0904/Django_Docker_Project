@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Importer des personnages{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4 display-4">Importer un Fichier de Personnages</h1>
+    
+    <!-- Formulaire d'importation -->
+    <form method="POST" enctype="multipart/form-data" class="border p-4 shadow-sm rounded bg-light">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="fichier_txt" class="form-label">Sélectionnez un fichier .txt :</label>
+            <input type="file" class="form-control" id="fichier_txt" name="fichier_txt" accept=".txt" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" id="importBtn">Importer</button>
+    </form>
+
+    <!-- Message d'erreur ou de succès -->
+    {% if messages %}
+        <div class="alert alert-info mt-4 text-center">
+            {% for message in messages %}
+                {{ message }}<br>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<!-- Script pour désactiver le bouton et changer le texte lors de la soumission -->
+<script>
+    const form = document.querySelector('form');
+    const importBtn = document.getElementById('importBtn');
+
+    form.addEventListener('submit', function() {
+        importBtn.innerHTML = 'Importation en cours...';
+        importBtn.disabled = true;
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Classement des Personnages{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4 display-4">Classement des Personnages</h1>
+
+    <!-- Classement par Classe -->
+    <h2 class="mb-4 text-primary border-bottom pb-2">Classement par Classe</h2>
+    {% for classe, personnages in personnages_par_classe.items %}
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">{{ classe.name }}</h3>
+                <span class="badge bg-light text-dark">{{ personnages|length }} personnages</span>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for personnage in personnages %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ personnage.name }} 
+                        <span class="badge bg-success">
+                            <i class="fas fa-star"></i> Score: {{ personnage.score }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+    <!-- Classement par Serveur -->
+    <h2 class="mb-4 text-secondary border-bottom pb-2">Classement par Serveur</h2>
+    {% for serveur, personnages in personnages_par_serveur.items %}
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">{{ serveur.name }}</h3>
+                <span class="badge bg-light text-dark">{{ personnages|length }} personnages</span>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for personnage in personnages %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ personnage.name }} 
+                        <span class="badge bg-success">
+                            <i class="fas fa-star"></i> Score: {{ personnage.score }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+    <!-- Classement par Type de Contenu -->
+    <h2 class="mb-4 text-info border-bottom pb-2">Classement par Type de Contenu</h2>
+    {% for contenu, personnages in personnages_par_contenu.items %}
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">{{ contenu.name }}</h3>
+                <span class="badge bg-light text-dark">{{ personnages|length }} personnages</span>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for personnage in personnages %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ personnage.name }} 
+                        <span class="badge bg-success">
+                            <i class="fas fa-star"></i> Score: {{ personnage.score }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+    <!-- Classement par Niveau -->
+    <h2 class="mb-4 text-warning border-bottom pb-2">Classement par Niveau</h2>
+    {% for niveau, personnages in personnages_par_niveau.items %}
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">Niveau {{ niveau.valeur }}</h3>
+                <span class="badge bg-dark text-white">{{ personnages|length }} personnages</span>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for personnage in personnages %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ personnage.name }} 
+                        <span class="badge bg-success">
+                            <i class="fas fa-star"></i> Score: {{ personnage.score }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

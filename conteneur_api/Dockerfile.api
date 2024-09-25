@@ -1,0 +1,43 @@
+FROM python:3.8
+
+
+ENV POSTGRES_DB=fisa
+ENV POSTGRES_USER=fisa
+ENV POSTGRES_PASSWORD=fisa
+ENV POSTGRES_HOST=postgresdb  
+
+
+# Définir le host ici
+
+# Définir la variable d'environnement pour les settings de Django
+ENV DJANGO_SETTINGS_MODULE=projet_ladder.settings
+
+# Set working directory
+WORKDIR /django-site/PROJET_DJANGO_YOAN
+
+
+# Installer les dépendances pour psycopg2-binary
+RUN apt-get update && \
+    apt-get install -y python3-dev libpq-dev && \
+    apt-get clean
+
+# Copy the requirements.txt
+COPY ../requirements.txt /django-site/PROJET_DJANGO_YOAN
+
+
+
+
+
+# Install dependencies
+RUN pip install -r requirements.txt
+
+
+# Copier uniquement le contenu de PROJET_DJANGO_YOAN sans dupliquer django-site
+COPY ./conteneur_api/django-site/PROJET_DJANGO_YOAN/ .
+
+# Expose port
+EXPOSE 8083/tcp
+
+
+# Commande pour lancer l'application avec le chemin complet
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8083"]

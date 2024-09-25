@@ -1,0 +1,6 @@
+django-bootstrap4
+djangorestframework==3.12.4
+Django==4.1
+psycopg2-binary==2.9.1  
+pytz
+

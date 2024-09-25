@@ -1,0 +1,8 @@
+{% extends "admin/base_site.html" %}
+
+{% block branding %}
+    {{ block.super }}
+    <div class="container">
+        <a href="{% url 'classement' %}" class="btn btn-primary">Retour au Classement</a>
+    </div>
+{% endblock %}
