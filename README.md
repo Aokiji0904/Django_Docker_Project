@@ -1,11 +1,7 @@
-## Docker CLI Cheat sheet :
-https://docs.docker.com/get-started/docker_cheatsheet.pdf
-## Dockerfile cheat sheet : 
-https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index
-## Dockercompose cheat sheet : 
-https://devhints.io/docker-compose
+##### Petit projet consistant en un site web composé d'une api et d'un front. Le front affiche un classement de personnage, classé par score, en fonction de leur niveau, leur classe, leur serveur, et le contenu. L'API permet d'importer directement plusieurs personnages via un fichier txt respectant une syntaxe précise définie plus bas, ce qui permet d'éviter d'ajouter les personnages manuellement via l'espace d'administration ou par groupe mais via le terminal. Enfin, cette application web a été dockerisée. #####
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
           Réseau virtuel Docker
 +---------------------------------------------+
@@ -90,7 +86,7 @@ Schéma de la base de donnée
 #### Questions
 
 
-### Fonctionnement de Django
+  ### Fonctionnement de Django
 
 
 1. Vous disposez d'un projet Django dans lequel une application public a été créée. Décrivez la suite de requêtes et d'exécutions permettant l'affichage d'une page HTML index.html à l'URL global / via une application public, ne nécessitant pas de contexte de données. Vous décrirez la position exacte dans l'arborescence des répertoires des différents fichiers utiles à cette exécution.
@@ -102,7 +98,7 @@ Schéma de la base de donnée
 4. Nous nous plaçons à la racine de votre projet Django. Quel effet a l'exécution python manage.py makemigrations ? Et l'exécution python manage.py migrate ? Quel(s) fichier(s) sont mis en oeuvre pendant ces exécutions ?
 
 
-### Fonctionnement de Docker
+  ### Fonctionnement de Docker
 
 1. Expliquez l'effet et la syntaxe de ces commandes, communément vues dans des fichiers Dockerfile : FROM, RUN, WORKDIR, EXPOSE, CMD.
 
@@ -132,7 +128,7 @@ environment:
 #### Réponses aux questions
 
 
- ### Fonctionnement de Django
+  ### Fonctionnement de Django
 
 1. 
 
@@ -243,7 +239,8 @@ environment:
    
    - `migrate` : Cette commande applique les migrations à la base de données, en modifiant sa structure en fonction des fichiers de migration créés. Les fichiers `migrations` sont lus et la base de données est mise à jour.
 
- Fonctionnement de Docker
+
+   ### Fonctionnement de Docker
 
 1. 
 
@@ -331,16 +328,16 @@ environment:
    Ici, `web` est le nom du service défini dans `docker-compose.yml`.
 
 
-Différents endpoints : 
+#### Différents endpoints : 
 
-API : 
+## API : 
 
 http://localhost:8083
 
     - /api
     - /importer-personnages
 
-POLLS :
+## POLLS :
 
 http://localhost:8001
 
@@ -352,6 +349,7 @@ http://localhost:8001
 
 
 #### Comment importer une liste de personnages depuis la page web http://localhost:8083/importer-personnages ?
+
 
 Il faut simplement que le fichier importé respecte une certaine syntaxe.
 
@@ -418,4 +416,4 @@ Les données de la base de données sont persistentes (volume présent), et les 
 
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------# Django_Docker_Project
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
