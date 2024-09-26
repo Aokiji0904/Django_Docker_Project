@@ -1,39 +1,3 @@
-
-+---------------------------------------------+
-|                                             |
-|  Hôte (127.0.0.1)                           |
-|      Accès via IP:ports :                   |
-|      127.0.0.1:8081 -> Nginx                |
-|                 | 80                        |
-|     +----------------------------+          |
-|     |      Proxy (nginx)          |         |
-|     |    Docker container         |         |
-|     |  Expose: 8081 -> 80         |         |
-|     +----------------------------+          |
-|                 | 8081                      |
-|      --------------------------             |
-|     | 8083                   | 8001         |
-|     v                        v              |
-| +----------------+      +----------------+  |
-| | API            |      | Frontend (Polls)| |
-| | conteneur_api  |      | conteneur_polls | |
-| | Expose: 8083   |      | Expose: 8001    | |
-| | (8083:8083)    |      | (8001:8001)     | |
-| +----------------+      +----------------+  |
-|     | 8083                        8001 |    |
-|     v -------------------------------- v    |
-|                 | 5432                      |
-|  +----------------------------------------+ |
-|  |    Base de Données (PostgreSQL)        | |
-|  |    Docker container                    | |
-|  |    Expose: 5432 (5432:5432)            | |
-|  +----------------------------------------+ |
-+---------------------------------------------+
-
-
-
-# Vos meilleurs amis
-
 ## Docker CLI Cheat sheet :
 https://docs.docker.com/get-started/docker_cheatsheet.pdf
 ## Dockerfile cheat sheet : 
@@ -41,11 +5,8 @@ https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/i
 ## Dockercompose cheat sheet : 
 https://devhints.io/docker-compose
 
-## Votre meilleur ami mais aux plans parfois foireux : 
-https://chatgpt.com/
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
+```
           Réseau virtuel Docker
 +---------------------------------------------+
 |                                             |
@@ -77,8 +38,8 @@ https://chatgpt.com/
 |  |    Expose: 5432 (5432:5432)            | |
 |  +----------------------------------------+ |
 +---------------------------------------------+
-
-
+```
+```
 Schéma de la base de donnée
 
 +-------------------+
@@ -120,30 +81,30 @@ Schéma de la base de donnée
                                                    | valeur (integer)  |
                                                    +-------------------+
 
+```
 
 
 
 
 
-
-Questions
-
-
-Fonctionnement de Django
+#### Questions
 
 
-Vous disposez d'un projet Django dans lequel une application public a été créée. Décrivez la suite de requêtes et d'exécutions permettant l'affichage d'une page HTML index.html à l'URL global / via une application public, ne nécessitant pas de contexte de données. Vous décrirez la position exacte dans l'arborescence des répertoires des différents fichiers utiles à cette exécution.
-
-Dans quelle(s) section(s) de quel(s) fichier(s) peut-on configurer la base de données que l'on souhaite utiliser pour un projet Django ?
-
-Dans quel(s) fichier(s) peut-on configurer le fichier de paramètres que l'on souhaite faire utiliser par le projet Django ? Si plusieurs fichers sont à mentionner, expliquez le rôle de chaque fichier.
-
-Nous nous plaçons à la racine de votre projet Django. Quel effet a l'exécution python manage.py makemigrations ? Et l'exécution python manage.py migrate ? Quel(s) fichier(s) sont mis en oeuvre pendant ces exécutions ?
+### Fonctionnement de Django
 
 
-Fonctionnement de Docker
+1. Vous disposez d'un projet Django dans lequel une application public a été créée. Décrivez la suite de requêtes et d'exécutions permettant l'affichage d'une page HTML index.html à l'URL global / via une application public, ne nécessitant pas de contexte de données. Vous décrirez la position exacte dans l'arborescence des répertoires des différents fichiers utiles à cette exécution.
 
-Expliquez l'effet et la syntaxe de ces commandes, communément vues dans des fichiers Dockerfile : FROM, RUN, WORKDIR, EXPOSE, CMD.
+2. Dans quelle(s) section(s) de quel(s) fichier(s) peut-on configurer la base de données que l'on souhaite utiliser pour un projet Django ?
+
+3. Dans quel(s) fichier(s) peut-on configurer le fichier de paramètres que l'on souhaite faire utiliser par le projet Django ? Si plusieurs fichers sont à mentionner, expliquez le rôle de chaque fichier.
+
+4. Nous nous plaçons à la racine de votre projet Django. Quel effet a l'exécution python manage.py makemigrations ? Et l'exécution python manage.py migrate ? Quel(s) fichier(s) sont mis en oeuvre pendant ces exécutions ?
+
+
+### Fonctionnement de Docker
+
+1. Expliquez l'effet et la syntaxe de ces commandes, communément vues dans des fichiers Dockerfile : FROM, RUN, WORKDIR, EXPOSE, CMD.
 
 Dans la définition d'un service dans le fichier docker-compose.yml, expliquez l'effet des mentions :
 
@@ -163,15 +124,15 @@ environment:
     POSTGRES_USER: ${POSTGRES_USER}
     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
-Citez une méthode pour définir des variables d'environnement dans un conteneur.
+2. Citez une méthode pour définir des variables d'environnement dans un conteneur.
 
-Dans un même réseau Docker, nous disposons d'un conteneur nginx (utilisant l'image nginx:latest) et d'un conteneur web (utilisant une image contenant un projet web Django, ayant la commande python manage.py runserver 0.0.0.0:8000 de lancée au démarrage du conteneur). Comment adresser le serveur web tournant dans le conteneur web depuis le conteneur nginx, sans utiliser les adresses IP des conteneurs ?
-
-
-Réponses aux questions
+3. Dans un même réseau Docker, nous disposons d'un conteneur nginx (utilisant l'image nginx:latest) et d'un conteneur web (utilisant une image contenant un projet web Django, ayant la commande python manage.py runserver 0.0.0.0:8000 de lancée au démarrage du conteneur). Comment adresser le serveur web tournant dans le conteneur web depuis le conteneur nginx, sans utiliser les adresses IP des conteneurs ?
 
 
- Fonctionnement de Django
+#### Réponses aux questions
+
+
+ ### Fonctionnement de Django
 
 1. 
 
@@ -390,12 +351,12 @@ http://localhost:8001
 
 
 
-Comment importer une liste de personnages depuis la page web http://localhost:8083/importer-personnages ?
+#### Comment importer une liste de personnages depuis la page web http://localhost:8083/importer-personnages ?
 
 Il faut simplement que le fichier importé respecte une certaine syntaxe.
 
 Exemple (personnages.txt) : 
-
+```
 name,classe,serveur,contenu,niveau,score
 Arthas,Guerrier,Serveur_1,Donjon,50,1500
 Jaina,Mage,Serveur_2,Raid,60,2100
@@ -428,30 +389,31 @@ Valeera,Voleur,Serveur_2,PvP,53,1600
 Fandral,Druide,Serveur_1,Donjon,56,1750
 Ysera,Démoniste,Serveur_4,Quête,49,1500
 Nozdormu,Mage,Serveur_3,Raid,60,2200
-
+```
 
 Cela permet d'éviter d'importer les personnages via ces commandes dans le terminal : 
 
-# Obtenir l'adresse IP du conteneur "conteneur_api"
-
+## Obtenir l'adresse IP du conteneur "conteneur_api"
+```
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' conteneur_api
-
-# Récupérer le contenu de la page pour obtenir le CSRF token
-
+```
+## Récupérer le contenu de la page pour obtenir le CSRF token
+```
 response=$(curl -c cookies.txt http://172.18.0.4:8083/importer-personnages/)
 csrf_token=$(echo "$response" | grep -oP 'name="csrfmiddlewaretoken" value="\K[^"]+')
-
-# Envoyer le fichier avec le cookie et le token CSRF
-
+```
+## Envoyer le fichier avec le cookie et le token CSRF
+```
 curl -X POST http://172.18.0.4:8083/importer-personnages/ \
 -F "csrfmiddlewaretoken=$csrf_token" \
 -F "fichier_txt=@../Téléchargements/personnages.txt" \
 -b cookies.txt
+```
+
+#### Execution avec docker compose up --build
 
 
-Execution avec docker compose up --build
-
-     Les données de la base de données sont persistentes (volume présent), et les dépendances sont dans requirements.txt.
+Les données de la base de données sont persistentes (volume présent), et les dépendances sont dans requirements.txt.
 
 
 
